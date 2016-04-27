@@ -48,17 +48,20 @@
 
         <dependencies>
 
-<!--            <dependency>
+            <dependency>
                 <groupId>com.rdpk</groupId>
                 <artifactId>keyevent-core</artifactId>
                 <version>${keyevent.version}</version>
-            </dependency>-->
+            </dependency>
+
+            <!--
         	<dependency>
         	    <groupId>com.github.rodolfodpk</groupId>
         	    <artifactId>keyevent</artifactId>
         	    <version>master-snapshot</version>
         	</dependency>
-	
+-->
+
             <dependency>
                 <groupId>com.rdpk</groupId>
                 <artifactId>mothership-core</artifactId>
