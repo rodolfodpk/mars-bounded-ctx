@@ -1,0 +1,76 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <listener>
+    <listener-class>
+      example1.mothership.service.MothershipServiceCtxListener
+    </listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>RestSwaggerCorsFilter</filter-name>
+    <filter-class>org.apache.camel.swagger.servlet.RestSwaggerCorsFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>RestSwaggerCorsFilter</filter-name>
+    <url-pattern>/api-docs/*</url-pattern>
+    <url-pattern>/rest/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>CamelServlet</servlet-name>
+    <display-name>Camel Http Transport Servlet</display-name>
+    <servlet-class>org.apache.camel.component.servlet.CamelHttpTransportServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+
+    <servlet-name>SwaggerServlet</servlet-name>
+    <servlet-class>org.apache.camel.swagger.servlet.RestSwaggerServlet</servlet-class>
+
+    <init-param>
+      <!-- we specify the base.path using relative notation, that means the actual path will be calculated at runtime as
+           http://server:port/contextpath/rest -->
+      <param-name>base.path</param-name>
+      <param-value>rest</param-value>
+    </init-param>
+    <init-param>
+      <!-- we specify the api.path using relative notation, that means the actual path will be calculated at runtime as
+           http://server:port/contextpath/api-docs -->
+      <param-name>api.path</param-name>
+      <param-value>api-docs</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>api.version</param-name>
+      <param-value>1.2.3</param-value>
+    </init-param>
+    <init-param>
+      <param-name>api.title</param-name>
+      <param-value>Mothership Services</param-value>
+    </init-param>
+    <init-param>
+      <param-name>api.description</param-name>
+      <param-value>An exercise for Mothership REST service</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- swagger api -->
+  <servlet-mapping>
+    <servlet-name>SwaggerServlet</servlet-name>
+    <url-pattern>/api-docs/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>CamelServlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>
